@@ -18,3 +18,7 @@ Auto-restartable downloads via tor proxy. This can run in parallel and uses a di
     ```
 
 1. Profit!
+
+## Thanks
+
+Borrowed heavily from https://sachsenhofer.io/setup-tor-docker-container
