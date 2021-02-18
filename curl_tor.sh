@@ -19,7 +19,10 @@ CONTAINER=$(docker run --detach --restart always -p $PORT:9050 tor-proxy)
 echo "Wait for container to start: $CONTAINER"
 sleep 10
 
-if [ ! -f $1 ]; then
+export ec=1
+
+if [ ! -f "$PWD/$FILENAME" ]; then
+  echo "File is new, start downloading from position 0"
   curl --location --remote-name --proxy socks5h://127.0.0.1:$PORT $1
   export ec=$?
   echo "CURL return code $ec"
@@ -27,7 +30,7 @@ fi
 
 while [ $ec -ne 0 ]; do
   LAST_POS=$(wc -c $FILENAME | awk '{print $1 }')
-  echo "Previous download failed, try again in 10s at position $LAST_POS"
+  echo "File exists, start downloading from position $LAST_POS"
   sleep 10
   curl --location --remote-name --proxy socks5h://127.0.0.1:$PORT --continue-at $LAST_POS $1
   export ec=$?
