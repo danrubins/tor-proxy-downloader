@@ -14,7 +14,7 @@ Auto-restartable downloads via tor proxy. This can run in parallel and uses a di
 
 1. Use as follows:
     ```
-    sh ./curl_tor.sh
+    sh ./curl_tor.sh http://superlongurl.onion/reallybigfile.zip
     ```
 
 1. Profit!
